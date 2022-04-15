@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-const labelTextStyle = TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98));
-const iconSize = 80.0;
-const spacing = 18.0;
+import 'constants.dart';
 
 class ReusableCardContent extends StatelessWidget {
   final String label;
@@ -16,11 +13,11 @@ class ReusableCardContent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, size: iconSize),
-        const SizedBox(height: spacing),
+        Icon(icon, size: kIconSize),
+        const SizedBox(height: kSpacing),
         Text(
           label,
-          style: labelTextStyle,
+          style: kLabelTextStyle,
         ),
       ],
     );
