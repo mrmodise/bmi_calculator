@@ -1,5 +1,5 @@
+import 'package:bmi_calculator/shared/components/constants.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
 
 class ReusableCardContent extends StatelessWidget {
   final String label;
