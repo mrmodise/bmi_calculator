@@ -20,7 +20,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.other;
   int height = 180;
   int weight = 60;
-  int age = 60;
+  int age = 25;
 
   // This widget is the root of your application.
   @override
