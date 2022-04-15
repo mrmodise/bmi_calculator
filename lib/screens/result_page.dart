@@ -17,43 +17,50 @@ class _ResultPageState extends State<ResultPage> {
       appBar: AppBar(
         title: const Text('BMI CALCULATOR'),
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        const Expanded(
-          child: Text(
-            'Your result',
-            style: kTitleTextStyle,
-          ),
-        ),
-        Expanded(
-            flex: 5,
-            child: ReusableCard(
-              colour: kActiveCardColour,
-              cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text(
-                    'OVERWEIGHT',
-                    style: kResultTextStyle,
-                  ),
-                  Text(
-                    '18.3',
-                    style: kBMITextStyle,
-                  ),
-                  Text(
-                    'Your BMI result is quite low, you should eat more!',
-                    style: kBodyTextStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(15.0),
+                alignment: Alignment.bottomLeft,
+                child: const Text(
+                  'Your result',
+                  style: kTitleTextStyle,
+                ),
               ),
-            )),
-        BottomButton(
-            buttonTitle: 'RE-CALCULATE',
-            onTap: () {
-              Navigator.pop(context);
-            })
-      ]),
+            ),
+            Expanded(
+                flex: 5,
+                child: ReusableCard(
+                  colour: kActiveCardColour,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'OVERWEIGHT',
+                        style: kResultTextStyle,
+                      ),
+                      Text(
+                        '18.3',
+                        style: kBMITextStyle,
+                      ),
+                      Text(
+                        'Your BMI result is quite low, you should eat more!',
+                        style: kBodyTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                )),
+            BottomButton(
+                buttonTitle: 'RE-CALCULATE',
+                onTap: () {
+                  Navigator.pop(context);
+                })
+          ]),
     );
   }
 }
