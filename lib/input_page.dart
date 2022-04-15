@@ -17,6 +17,7 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColour = kInactiveCardColour;
   Color femaleCardColour = kInactiveCardColour;
   Gender selectedGender = Gender.other;
+  int height = 180;
 
   // This widget is the root of your application.
   @override
@@ -33,6 +34,7 @@ class _InputPageState extends State<InputPage> {
           title: const Text('BMI Calculator'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
                 child: Row(
@@ -64,14 +66,51 @@ class _InputPageState extends State<InputPage> {
                 ))
               ],
             )),
-             Expanded(
+            Expanded(
                 child: ReusableCard(
               colour: kActiveCardColour,
-                  cardChild: Column(
-                    children: const [
-                      Text('HEIGHT')
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('HEIGHT', style: kLabelTextStyle),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      const Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      )
                     ],
                   ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      thumbShape: const RoundSliderThumbShape(
+                          enabledThumbRadius: kSliderThumbRadius),
+                      overlayShape: const RoundSliderOverlayShape(
+                          overlayRadius: kSliderOverlayRadius),
+                      thumbColor: kBottomContainerColour,
+                      activeTrackColor: kSliderActiveColour,
+                      inactiveTrackColor: kSliderInactiveColour,
+                      overlayColor: kSliderOverlayColour,
+                    ),
+                    child: Slider(
+                        value: height.toDouble(),
+                        min: kSliderMinValue,
+                        max: kSliderMaxValue,
+                        onChanged: (double updatedValue) {
+                          setState(() {
+                            height = updatedValue.round();
+                          });
+                        }),
+                  )
+                ],
+              ),
             )),
             Expanded(
                 child: Row(
