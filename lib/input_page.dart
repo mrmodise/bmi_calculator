@@ -3,9 +3,12 @@ import 'package:bmi_calculator/shared/reusable_card_content.dart';
 import 'package:flutter/material.dart';
 import 'package:material_color_gen/material_color_gen.dart';
 
+enum Gender { male, female, other }
+
 const bottomContainerHeight = 80.0;
 const bottomContainerColour = Color(0xFFEB1555);
 const activeCardColour = Color(0xFF1D1E33);
+const inactiveCardColour = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -15,6 +18,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColour = inactiveCardColour;
+  Color femaleCardColour = inactiveCardColour;
+  Gender selectedGender = Gender.other;
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -33,16 +40,30 @@ class _InputPageState extends State<InputPage> {
           children: [
             Expanded(
                 child: Row(
-              children: const [
+              children: [
                 Expanded(
                     child: ReusableCard(
-                        colour: activeCardColour,
-                        cardChild: ReusableCardContent(
+                        onTap: () {
+                          setState(() {
+                            selectedGender = Gender.male;
+                          });
+                        },
+                        colour: selectedGender == Gender.male
+                            ? activeCardColour
+                            : inactiveCardColour,
+                        cardChild: const ReusableCardContent(
                             icon: Icons.male, label: 'MALE'))),
                 Expanded(
                     child: ReusableCard(
-                  colour: activeCardColour,
-                  cardChild: ReusableCardContent(
+                  onTap: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                  colour: selectedGender == Gender.female
+                      ? activeCardColour
+                      : inactiveCardColour,
+                  cardChild: const ReusableCardContent(
                       icon: Icons.female, label: 'FEMALE'),
                 ))
               ],
@@ -50,7 +71,6 @@ class _InputPageState extends State<InputPage> {
             const Expanded(
                 child: ReusableCard(
               colour: activeCardColour,
-              cardChild: Icon(Icons.female),
             )),
             Expanded(
                 child: Row(
@@ -58,12 +78,10 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: ReusableCard(
                   colour: activeCardColour,
-                  cardChild: Icon(Icons.female),
                 )),
                 Expanded(
                     child: ReusableCard(
                   colour: activeCardColour,
-                  cardChild: Icon(Icons.female),
                 ))
               ],
             )),
